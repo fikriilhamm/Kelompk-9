@@ -1,0 +1,96 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+public class Login {
+
+ private JFrame frame;
+ private JTextField usernamefield;
+ private JPasswordField password;
+
+ /**
+  * Launch the application.
+  */
+ public static void main(String[] args) {
+  EventQueue.invokeLater(new Runnable() {
+   public void run() {
+    try {
+     Login window = new Login();
+     window.frame.setVisible(true);
+    } catch (Exception e) {
+     e.printStackTrace();
+    }
+   }
+  });
+ }
+
+ /**
+  * Create the application.
+  */
+ public Login() {
+  initialize();
+ }
+
+ /**
+  * Initialize the contents of the frame.
+  */
+ private void initialize() {
+  frame = new JFrame();
+  frame.setBounds(100, 100, 450, 300);
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.getContentPane().setLayout(null);
+  
+  JLabel UserName = new JLabel("User Name");
+  UserName.setBounds(10, 29, 91, 31);
+  frame.getContentPane().add(UserName);
+  
+  usernamefield = new JTextField();
+  usernamefield.setBounds(155, 34, 86, 20);
+  frame.getContentPane().add(usernamefield);
+  usernamefield.setColumns(10);
+  
+  JLabel Password = new JLabel("Paswword");
+  Password.setBounds(10, 89, 91, 14);
+  frame.getContentPane().add(Password);
+  
+  password = new JPasswordField();
+  password.setBounds(155, 86, 86, 20);
+  frame.getContentPane().add(password);
+  
+  JButton Login = new JButton("Login");
+  Login.addActionListener(new ActionListener() {
+   public void actionPerformed(ActionEvent e) {
+    String password = Password.getText();
+    String username = usernamefield.getText();
+    
+    if (password.contains("Admin") && username.contains("Admin")) {
+     JOptionPane.showInternalMessageDialog(null, "Login Berhasil");
+    }
+    
+    else
+    {
+     JOptionPane.showInternalMessageDialog(null,"EROR", "Login Gagal",JOptionPane.ERROR_MESSAGE);
+     
+    }
+   }
+  });
+  Login.setBounds(303, 133, 89, 23);
+  frame.getContentPane().add(Login);
+  
+  JLabel lblNewLabel = new JLabel("Login");
+  lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+  lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 17));
+  lblNewLabel.setBounds(10, 0, 414, 31);
+  frame.getContentPane().add(lblNewLabel);
+ }
+}
